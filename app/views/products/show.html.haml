@@ -1,0 +1,31 @@
+%h1 Product
+
+%p
+  %b Photo
+  %br
+  = image_tag(@product.image.url(:large), alt: @product.title, title: @product.title)
+
+%p
+  %b Name
+  %br
+  = @product.title
+
+%p
+  %b Track
+  %br
+  %audio{ src: @product.audio.url, preload: "auto" }
+
+%p
+  %b Price 
+  %br
+  = @product.price
+
+%div.form-actions
+  = link_to 'Back', products_path, class: :btn
+  = link_to 'Edit', edit_product_path(@product), class: 'btn'
+  = link_to 'Delete', product_path(@product), method: 'delete', confirm: 'Are you sure?', class: 'btn btn-danger'
+
+:javascript
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });

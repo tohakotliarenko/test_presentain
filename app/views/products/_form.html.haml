@@ -1,0 +1,34 @@
+- if notice
+  %div.alert.alert-danger= flash_notifications
+= form_for @product, validate: true, html: { class: 'form-horizontal', multipart: true } do |f|
+  %fieldset
+    %legend Product
+
+    %div.control-group
+      = f.label :type, class: 'control-label'
+      %div.controls
+        = f.select :type, Product::TYPE_PRODUCT, class: 'text_field'
+
+    %div.control-group
+      = f.label :title, class: 'control-label'
+      %div.controls
+        = f.text_field :title, class: 'text_field'
+
+    %div.control-group
+      = f.label :image, class: 'control-label'
+      %div.controls
+        = f.file_field :image, class: 'text_field'
+
+    %div.control-group
+      = f.label :price, class: 'control-label'
+      %div.controls
+        = f.text_field :price, class: 'text_field'
+
+    %div.control-group
+      = f.label :audio, class: 'control-label'
+      %div.controls
+        = f.file_field :audio, class: 'text_field'
+
+    %div.form-actions
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', products_path, class: 'btn'

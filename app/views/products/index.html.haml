@@ -1,0 +1,27 @@
+%h1 Products
+- if @products.present?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Photo
+        %th Name
+        %th Type
+        %th Created at
+        %th Actions
+
+    %tbody
+      - @products.each do |product|
+        %tr
+          %td= image_tag(product.image.url(:small), alt: product.title, title: product.title)
+          %td= link_to product.title, product_path(product)
+          - if product.type == Product::TYPE_TRANCE
+            %th Trance
+          - else
+            %th Uplifting
+          %td= product.created_at.strftime('%d %B %Y')
+          %td
+            = link_to 'Edit', edit_product_path(product), class: 'btn btn-mini'
+            = link_to 'Destroy', product_path(product), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger'
+- else
+  %p.text-muted No Products 
+= link_to 'New', new_product_path, class: 'btn btn-primary'

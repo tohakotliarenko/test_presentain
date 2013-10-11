@@ -1,0 +1,13 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+public/system
+public/uploads
+public/stylesheets
+vendor/gems
+imports
+.project
+config/environments/development.rb
+config/environments/test.rb
+.sass-cache/
