@@ -1,5 +1,7 @@
 TestPresentain::Application.routes.draw do
   
+  get "text/index"
+
   root to: 'products#index'
   devise_for :users
 

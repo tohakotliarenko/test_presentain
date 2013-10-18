@@ -7,7 +7,8 @@ class Product
   field :type, type: Integer
   field :price, type: Integer
 
-	attr_accessible :title, :type, :price, :image, :audio
+	# attr_accessible :title, :type, :price, :image, :audio
+	attr_accessible :title, :type, :price
 
   TYPE_TRANCE = 1
   TYPE_UPLAIFTING = 2
@@ -29,11 +30,12 @@ class Product
 
   belongs_to :owner, class_name: "User"
 
-  validates_presence_of :title, :type, :price, :image, :audio
+  # validates_presence_of :title, :type, :price, :image, :audio
+  validates_presence_of :title, :type, :price
   validates_length_of :title, within: 4..100
   validates :price, numericality: { only_integer: true }
-	validates_attachment_size :audio, less_than: 20.megabytes
-	validates_attachment_content_type :audio, content_type: [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
+	# validates_attachment_size :audio, less_than: 20.megabytes
+	# validates_attachment_content_type :audio, content_type: [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
 
 
 	def update_audio!

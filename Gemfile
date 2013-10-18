@@ -10,6 +10,11 @@ gem 'bson_ext'
 gem 'mongoid'
 gem 'mongoid_session_store'
 
+gem 'rspec-rails', :group => [:test, :development]
+gem "factory_girl_rails", :group => [:development, :test]
+gem "database_cleaner", :group => :test
+gem "email_spec", :group => :test
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
