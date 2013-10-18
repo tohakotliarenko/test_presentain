@@ -81,8 +81,6 @@ it 'should UPDATE the product' do
 		    @product.reload
 		    @product.title.should == @attr[:title]
 
-
-
 end
 
 end

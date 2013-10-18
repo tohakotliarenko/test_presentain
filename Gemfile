@@ -11,6 +11,7 @@ gem 'mongoid'
 gem 'mongoid_session_store'
 
 gem 'rspec-rails', :group => [:test, :development]
+gem 'capybara', :group => [:test, :development]
 gem "factory_girl_rails", :group => [:development, :test]
 gem "database_cleaner", :group => :test
 gem "email_spec", :group => :test
