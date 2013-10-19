@@ -8,7 +8,7 @@ class Product
   field :price, type: Integer
 
 	# attr_accessible :title, :type, :price, :image, :audio
-	attr_accessible :title, :type, :price
+	attr_accessible :title, :type, :price, :image
 
   TYPE_TRANCE = 1
   TYPE_UPLAIFTING = 2
@@ -31,7 +31,7 @@ class Product
   belongs_to :owner, class_name: "User"
 
   # validates_presence_of :title, :type, :price, :image, :audio
-  validates_presence_of :title, :type, :price
+  validates_presence_of :title, :type, :price, :image
   validates_length_of :title, within: 4..100
   validates :price, numericality: { only_integer: true }
 	# validates_attachment_size :audio, less_than: 20.megabytes
