@@ -23,6 +23,7 @@ require 'spec_helper'
         fill_in 'Title', :with => 'Th'
         fill_in 'Price', :with => '99.00'
         attach_file('Image', 'public/test.png')
+        attach_file('Audio', 'public/demo_track.mp3')
         click_button('Create Product')
       end
       expect(page).to have_selector('a','Cancel')
@@ -60,6 +61,7 @@ require 'spec_helper'
         fill_in 'Title', :with => 'Thisisproduct'
         fill_in 'Price', :with => '99.00'
         attach_file('Image', 'public/test.png')
+        attach_file('Audio', 'public/demo_track.mp3')
         click_button('Create Product')
       end
       expect(page).to have_selector('a','New')
