@@ -3,7 +3,7 @@ FactoryGirl.define do
   title "a title"
   type "Trance"
   price "99.00"
-  # image fixture_file_upload('public/test.png', 'image/png')
-  # audio fixture_file_upload('public/demo_track.mp3', 'audio/mp3')
+  image File.new(Rails.root + 'public/test.png')
+  audio File.new(Rails.root + 'public/demo_track.mp3')
 end
 end

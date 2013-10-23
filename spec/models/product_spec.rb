@@ -8,8 +8,8 @@ describe "Product presence of fields" do
 
 
 	it "should check if all fields are present" do		
-		Product.create!(title: "Titletitle", type: "Trance", price: "99.00", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mp3', 'audio/mp3'))
-		# FactoryGirl.create(:product)
+		# Product.create!(title: "Titletitle", type: "Trance", price: "99.00", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mp3', 'audio/mp3'))
+		FactoryGirl.create(:product)
       	Product.all.count.should == 1
 	end
 
