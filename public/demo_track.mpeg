@@ -1,0 +1,90 @@
+<?php
+set_time_limit(0);
+
+//ini_set('display_errors',1);
+//error_reporting(E_ALL);
+
+require_once 'lib/excel-class.php';
+$data = new Spreadsheet_Excel_Reader("fixedlistofitems.xls");
+require_once 'savetofile.php';
+
+function getHTML($url){
+	$crl = curl_init();	    
+	$agent = "Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)";		
+    curl_setopt($crl, CURLOPT_URL,$url);
+    curl_setopt($crl, CURLOPT_USERAGENT, $agent);
+    curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1); 
+    curl_setopt($crl, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($crl, CURLOPT_COOKIEFILE, "/var/www/feeds/cookie.txt");
+    curl_setopt($crl, CURLOPT_COOKIEJAR, "/var/www/feeds/cookie.txt");
+    $result = curl_exec ($crl);
+    curl_close ($crl);
+    return $result;
+}
+function emptyCookiesFile(){
+	file_put_contents("/var/www/feeds/cookie.txt", "");
+}
+// Explode the content according to newlines
+function explodeRows($data) {
+  $rowsArr = explode("\n", $data);
+  return $rowsArr;
+}
+
+// Explode the columns according to tabs
+function explodeTabs($singleLine) {
+  $tabsArr = explode("\t", $singleLine);
+  return $tabsArr;
+}
+
+emptyCookiesFile();
+$url_google = "http://www.chewy.com/app/feeds/product/google";
+$data_google = getHTML($url_google);
+$rows_arr_google = explodeRows($data_google);
+
+$num_rows = $data->rowcount($sheet_index=0);
+
+$result = write_log(array("partnumber", "Product Name", "Category", "Brand/Manufacturer", "UPC number", "Wag.com ID", "Chewy.com price", "Petflow.com 1 ID", "Petflow.com 2 ID", "ASIN", "PetFoodDirect.com ID", "PetSmart.com ID"));
+
+foreach($rows_arr_google as $row) {
+	$array_google[] = explodeTabs($row);
+}
+
+$isFirst = true;
+foreach($array_google as $product){
+	if ($isFirst) {
+        $isFirst = false;
+        continue;
+    }
+	$partnumber = utf8_encode($product[0]);
+	$product_name = utf8_encode($product[1]);
+	$category = utf8_encode($product[12]);
+	$chewy_price = utf8_encode($product[4]);
+	$brand = utf8_encode($product[5]);
+	$upc = utf8_encode($product[8]);
+	
+	for($row=1; $row <= $num_rows; $row++) {
+		$file_partnumber = utf8_encode($data->val($row,'A'));
+		if($file_partnumber == $partnumber){
+			$wag_id = utf8_encode($data->val($row,'F'));
+			$petflow_1_id = utf8_encode($data->val($row, 'H'));
+			$petflow_2_id = utf8_encode($data->val($row, 'I'));
+			$asin = utf8_encode($data->val($row, 'J'));
+			$petfooddirect_id = utf8_encode($data->val($row, 'K'));
+			$petsmart_id = utf8_encode($data->val($row, 'L'));
+			break;
+		}
+		else {
+			$wag_id = null;
+
+			$asin = null;
+			$petflow_1_id = null;
+			$petflow_2_id = null;
+			$petfooddirect_id = null;
+			$petsmart_id = null;
+		}
+	}
+	
+	$result = write_log(array($partnumber, $product_name, $category, $brand, $upc, $wag_id, $chewy_price, $petflow_1_id, $petflow_2_id, $asin, $petfooddirect_id, $petsmart_id));
+}
+echo "Done";
+?>

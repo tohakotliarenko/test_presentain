@@ -15,6 +15,8 @@ gem 'capybara', :group => [:test, :development]
 gem "factory_girl_rails", :group => [:development, :test]
 gem "database_cleaner", :group => :test
 gem "email_spec", :group => :test
+gem "rspec-sidekiq", :group => [:test]
+
 
 # Gems used only for assets and not required
 # in production environments by default.

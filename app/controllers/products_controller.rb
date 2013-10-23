@@ -51,10 +51,11 @@ class ProductsController < ApplicationController
 	def destroy
 		@product = Product.find(params[:id])
 		@product.destroy
-		flash[:notice] = 'Your product was successfully deleted'
-		respond_to do |format|
-			format.html { redirect_to products_path }
-		end
+		redirect_to products_path
+		# flash[:notice] = 'Your product was successfully deleted'
+		# respond_to do |format|
+			# format.html { redirect_to products_path }
+		# end
 	end
 
 end
