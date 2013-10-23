@@ -83,47 +83,52 @@ describe "Audio validations" do
 	end	
 
 	it "Attachment format audio/mpeg" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mpeg', 'audio/mpeg'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mpeg', 'audio/mpeg'))
+      	Product.all.count.should == 1
 	end	
 
 	it "Attachment format audio/x-mpeg" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpeg', 'audio/x-mpeg'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpeg', 'audio/x-mpeg'))
+      	Product.all.count.should == 1
 	end	
 
 	it "Attachment format audio/mp3" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mp3', 'audio/mp3'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mp3', 'audio/mp3'))
+      	Product.all.count.should == 1
 	end	
 
 	it "Attachment format audio/x-mp3" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mp3', 'audio/x-mp3'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mp3', 'audio/x-mp3'))
+      	Product.all.count.should == 1
 	end
 
 	it "Attachment format audio/mpeg3" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mpeg3', 'audio/mpeg3'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mpeg3', 'audio/mpeg3'))
+      	Product.all.count.should == 1
 	end
 
 	it "Attachment format audio/x-mpeg3" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpeg3', 'audio/x-mpeg3'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpeg3', 'audio/x-mpeg3'))
+      	Product.all.count.should == 1
 	end
 
 	it "Attachment format audio/mpg" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mpg', 'audio/mpg'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.mpg', 'audio/mpg'))
+      	Product.all.count.should == 1
 	end
 
 	it "Attachment format audio/x-mpg" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpg', 'audio/x-mpg'))
-      	Product.all.count.should == 0
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpg', 'audio/x-mpg'))
+      	Product.all.count.should == 1
 	end
 
 	it "Attachment format audio/x-mpegaudio" do
-		Product.create(title: "Tilsf", type: "Trance", price: "0.000567", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpegaudio', 'audio/x-mpegaudio'))
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.x-mpegaudio', 'audio/x-mpegaudio'))
+      	Product.all.count.should == 1
+	end
+
+	it "Attachment format is not valid" do
+		Product.create(title: "Tilsf", type: "Trance", price: "99", image: fixture_file_upload('public/test.png', 'image/png'), audio: fixture_file_upload('public/demo_track.wav', 'audio/wav'))
       	Product.all.count.should == 0
 	end
 end
