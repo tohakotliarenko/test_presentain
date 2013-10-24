@@ -13,17 +13,17 @@ describe "AudioSlicer worker" do
 
   end
 
-  it "should delete demo_track.mp3" do
+ #  it "should delete demo_track.mp3" do
 
  #  	audio = File.new(Rails.root + 'public/demo_track.mp3')
  #  	File.should be_exist(audio)
 
-  	product = FactoryGirl.create(:product)
-  	AudioSlicer.perform_async(product.id)
+ #  	product = FactoryGirl.create(:product)
+ #  	AudioSlicer.perform_async(product.id)
 
 	# File.should_not be_exist(audio)  	
 
-  end
+ #  end
 
 end
 
