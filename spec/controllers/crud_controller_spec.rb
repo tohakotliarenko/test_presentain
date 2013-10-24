@@ -32,7 +32,7 @@ describe ProductsController do
   end
 
 
-  it 'shoud DELETE product' do
+  it 'should DELETE product' do
     @product = FactoryGirl.create(:product)
   	@product.destroy
   	Product.all.count.should == 0

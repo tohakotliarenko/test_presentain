@@ -3,6 +3,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require 'sidekiq'
 require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'

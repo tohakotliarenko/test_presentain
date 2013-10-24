@@ -37,7 +37,7 @@ class Product
 
 
 	def update_audio!
-		self.update_attributes(audio: File.open("#{Rails.root}/demo_track.mp3"))
+		self.update_attributes(audio: File.open("#{Rails.root}/public/demo_track.mp3"))
 		self.save
 	end
 
