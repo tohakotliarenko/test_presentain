@@ -3,12 +3,19 @@
 ENV["RAILS_ENV"] ||= 'test'
 require 'sidekiq'
 require 'sidekiq/testing'
-Sidekiq::Testing.fake!
+require 'sidekiq-status'
+# Sidekiq::Testing.fake!
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 
+
+Sidekiq.configure_client do |config|
+  config.client_middleware do |chain|
+    chain.add Sidekiq::Status::ClientMiddleware
+  end
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

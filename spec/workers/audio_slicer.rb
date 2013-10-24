@@ -25,31 +25,19 @@ describe "AudioSlicer worker" do
 
  #  end
 
+  it 'should check if the audio filesize was changed' do
+  	
+  	include Sidekiq::Worker
+  	include Sidekiq::Status::Worker
+
+  	initial_file_size = File.size(Rails.root + 'public/demo_track.mp3').to_f
+  	product = FactoryGirl.create(:product)
+  	job_id = AudioSlicer.perform_async(product.id)
+  	if Sidekiq::Status::complete? job_id
+	  	final_file_size = File.size(product.audio.path).to_f
+	  	final_file_size.should < initial_file_size
+  	end
+
+  end
+
 end
-
-# require "spec_helper"
-
-# describe "audio slicer" do
-  
-#   	it "should slice given product async"
-# 		product = FactoryGirl.create(:product)
-
-# 		work = AudioSlicer.new
-# 		expect {
-# 	  		AudioSlicer.perform_async(@product.id)
-# 		}.to change(AudioSlicer.jobs, :size).by(1)
-
-	# should change(work.jobs, :size).by(1)
-	# work.should have_enqueued_job("AudioSlicer", true)
-		
-
-  # it { should be_processed_in :audio_slicer }
-  # it { should be_retryable false }
-  # it { should be_unique }
-
-  # it "enqueues another audio slicing" do
-  #   AudioSlicer.perform_async(@product.id.to_s)
-
-  #   expect(AudioSlicer).to have_enqueued_job("AudioSlicer", true)
-#   	end
-# end
